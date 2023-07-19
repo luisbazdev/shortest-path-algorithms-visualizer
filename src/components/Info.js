@@ -87,6 +87,7 @@ export default function Info({
             control={<Switch color="primary" />}
             label="Directed"
             labelPlacement="start"
+            disabled={running}
           />
         </FormControl>}
         <Button variant="text" disabled={running} 
@@ -99,8 +100,8 @@ export default function Info({
           disabled={
             type === 0
               ? running ||
-                source === -1 ||
-                destination === -1 ||
+                source === "-1" ||
+                destination === "-1" ||
                 source === destination
               : running ||
                 startX === -1 ||

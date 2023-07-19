@@ -46,7 +46,6 @@ export default function Visualizer() {
   const [isLeftClick, setIsLeftClick] = useState(false);
 
   const containerRef = useRef(null);
-
   function resetGraph() {
     let _graph = [...graph];
     _graph.forEach((node) => {
@@ -192,6 +191,7 @@ export default function Visualizer() {
       { row: finishY, col: finishX }
     );
     if (!astar_result) return;
+    setMode(0);
     let { path, order, distance } = astar_result;
     animateAStarSearch(path, order, distance);
   }
@@ -281,7 +281,7 @@ export default function Visualizer() {
     setNodes(nodes + 1);
   }
   function removeNode(e, id) {
-    if (running || mode != 0) return;
+    if (running || mode !== 0) return;
     if (id === source) setSource("-1");
     if (id === destination) setDestination("-1");
     e.preventDefault();
@@ -333,6 +333,7 @@ export default function Visualizer() {
     setEdges(edges - 1);
   }
   function onKeyPress(event) {
+    if(running) return
     if (type === 0) {
       switch (event.key) {
         case "Escape": {
@@ -394,6 +395,7 @@ export default function Visualizer() {
     createNode(row, col);
   }
   function onNodeClick(event, id) {
+    if(running) return
     resetGraph();
     switch (mode) {
       case 1: {
@@ -502,7 +504,7 @@ export default function Visualizer() {
   }
   function removeWall(e, square) {
     if (e) e.preventDefault();
-    if (running || mode != 0) return;
+    if (running || mode !== 0) return;
     let { row, col } = square;
     let _grid = [...grid];
     _grid[row][col].isWall = false;
