@@ -45,7 +45,7 @@ export default function About({ showDialog, setShowDialog }) {
           <br />
           You can find the source code here
           <IconButton>
-            <a href="https://github.com/luisbazdev/dijkstra-shortest-path-visualizer">
+            <a href="https://github.com/luisbazdev/shortest-path-algorithms-visualizer">
               <GitHubIcon color="primary"/>
             </a>
           </IconButton>
