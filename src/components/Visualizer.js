@@ -281,7 +281,7 @@ export default function Visualizer() {
     setNodes(nodes + 1);
   }
   function removeNode(e, id) {
-    if (running) return;
+    if (running || mode != 0) return;
     if (id === source) setSource("-1");
     if (id === destination) setDestination("-1");
     e.preventDefault();
@@ -502,7 +502,7 @@ export default function Visualizer() {
   }
   function removeWall(e, square) {
     if (e) e.preventDefault();
-    if (running) return;
+    if (running || mode != 0) return;
     let { row, col } = square;
     let _grid = [...grid];
     _grid[row][col].isWall = false;
@@ -613,6 +613,7 @@ export default function Visualizer() {
       className="visualizer_container"
       onKeyDown={onKeyPress}
       ref={containerRef}
+      onContextMenu={(e) => e.preventDefault()}
     >
       <About showDialog={showDialog} setShowDialog={setShowDialog} />
       <Info
